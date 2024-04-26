@@ -6,16 +6,16 @@
 #    By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:26:36 by jose-gon          #+#    #+#              #
-#    Updated: 2024/04/25 12:45:02 by jose-gon         ###   ########.fr        #
+#    Updated: 2024/04/26 12:24:11 by jose-gon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 FLAGS =  -g -Wall -Wextra -Werror -I./include/
-#LFLAGS = -L./include/Libft -lft -L./include/MLX42/ -lmlx42 -Iinclude -lglfw -L"/Users/jose-gon/.brew/opt/glfw/lib/"
-LFLAGS = -L./include/Libft -lft -L./include/MLX42/ -lmlx42 -Iinclude -ldl -lglfw -pthread -lm
+LFLAGS = -L./include/Libft -lft -L./include/MLX42/ -lmlx42 -Iinclude -lglfw -L"/Users/jose-gon/.brew/opt/glfw/lib/"
+#LFLAGS = -L./include/Libft -lft -L./include/MLX42/ -lmlx42 -Iinclude -ldl -lglfw -pthread -lm
 FILES = FdF.c utils_map.c utils_map2.c loading_map.c utils_color.c utils_color2.c \
-map_draw.c draw_utils.c prints.c geometric_pers.c let_it_go.c 
+map_draw.c draw_utils.c prints.c geometric_pers.c let_it_go.c
 SRC_DIR = src
 OBJ_DIR = obj
 SOURCES = $(FILES:%=$(SRC_DIR)/%)

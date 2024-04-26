@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:21:52 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/25 12:44:11 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:02:49 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	let_it_go(t_map *map, int flag)
 {
-	if (flag == 1)
+	if (flag >= 1)
 		free(map->map_memory);
-	if (flag <= 2)
+	if (flag >= 2)
 		free(map->points);
-	if (flag <= 3)
+	if (flag >= 3)
 		free(map->cpy_proje);
 }
 

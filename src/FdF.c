@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:35:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/26 11:15:04 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:12:48 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,33 @@
 // 	system("leaks fdf");
 // }
 
+void	key_support(mlx_key_data_t key, void *param)
+{
+	t_global	*global;
+
+	global = (t_global *)param;
+	if (key.key == MLX_KEY_LEFT && key.action == MLX_REPEAT)
+	{
+		global->map.x_move += -5;
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_RIGHT && key.action == MLX_REPEAT)
+	{
+		global->map.x_move += +5;
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_UP && key.action == MLX_REPEAT)
+	{
+		global->map.y_move += -5;
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_DOWN && key.action == MLX_REPEAT)
+	{
+		global->map.y_move += +5;
+		map_projection(global);
+	}
+}
+
 void	keys_controls(mlx_key_data_t key, void *param)
 {
 	t_global	*global;
@@ -24,16 +51,7 @@ void	keys_controls(mlx_key_data_t key, void *param)
 	global = (t_global *)param;
 	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
 		mlx_close_window((mlx_t *)global->my_mlx);
-	if (key.key == MLX_KEY_SPACE && key.action == MLX_PRESS)
-		global->map.rot_x += 30;
-	if (key.key == MLX_KEY_LEFT && key.action == MLX_REPEAT)
-		global->map.x_move += -5;
-	if (key.key == MLX_KEY_RIGHT && key.action == MLX_REPEAT)
-		global->map.x_move += +5;
-	if (key.key == MLX_KEY_UP && key.action == MLX_REPEAT)
-		global->map.y_move += -5;
-	if (key.key == MLX_KEY_DOWN && key.action == MLX_REPEAT)
-		global->map.y_move += +5;
+	key_support(key, param);
 }
 
 int	mlx_initialize(t_global	*global, char *name)
@@ -69,9 +87,8 @@ int	main(int argc, char **argv)
 	load_fdf_map(&global.map, argv[1]);
 	mlx_initialize(&global, argv[1]);
 	map_projection(&global);
-	mlx_image_to_window(global.my_mlx, global.bitmap, 0, 0);
 	mlx_key_hook(global.my_mlx, &keys_controls, &global);
-	mlx_loop_hook(global.my_mlx, (void *)map_projection, &global);
+	//mlx_loop_hook(global.my_mlx, (void *)map_projection, &global);
 	mlx_loop(global.my_mlx);
 	mlx_terminate(global.my_mlx);
 	let_it_go(&global.map, 3);

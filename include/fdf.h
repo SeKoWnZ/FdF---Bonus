@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/25 20:44:57 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:12:00 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ typedef struct s_global
 # define WHITE 0xFFFFFFFF
 # define RED 0xFF0000FF
 # define YELLOW 0xFFFF00FF
+# define PURPLE 0x9800C8FF
 
-# define DEFAULT_TOP WHITE
-# define DEFAULT_GRO RED
-
+# define DEFAULT_TOP PURPLE
+# define DEFAULT_GRO BLACK
 // ERRORS DEF
 
 # define ERROR_ARG "ERROR - Incorrect number of arguments"
@@ -121,6 +121,7 @@ void				map_projection(t_global *global);
 // MAP UTILS
 
 void				copy_map(t_point *src, t_point *dst, int len);
+void				map_draw(t_global *global);
 int					into_bounds(t_point dot);
 
 // PROYECTION UTILS
@@ -128,7 +129,7 @@ int					into_bounds(t_point dot);
 void				change_perspective(t_map *map, t_point *proje);
 void				isometric(t_map *map, t_point *point, t_point *proje, t_point *lim);
 void				ft_scale(t_point *point, t_point *lim);
-//void				rotate(t_map *map, t_point *proje);
+void				iso_rotate(t_global *global);
 
 // COLOR UTILS
 
