@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:35:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/26 18:12:48 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:24:30 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,49 @@
 // 	system("leaks fdf");
 // }
 
-void	key_support(mlx_key_data_t key, void *param)
+void	key_rotations(mlx_key_data_t key, void *param)
 {
 	t_global	*global;
 
 	global = (t_global *)param;
-	if (key.key == MLX_KEY_LEFT && key.action == MLX_REPEAT)
+	if (key.key == MLX_KEY_W && key.action == MLX_PRESS)
+	{
+		global->map.rot_x += 1 * (M_PI / 180);
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_D && key.action == MLX_PRESS)
+	{
+		global->map.rot_z += 1 * (M_PI / 180);
+		map_projection(global);
+	}
+		if (key.key == MLX_KEY_A && key.action == MLX_PRESS)
+	{
+		global->map.rot_z -= 1 * (M_PI / 180);
+		map_projection(global);
+	}
+}
+
+void	key_translations(mlx_key_data_t key, void *param)
+{
+	t_global	*global;
+
+	global = (t_global *)param;
+	if (key.key == MLX_KEY_LEFT && key.action == MLX_PRESS)
 	{
 		global->map.x_move += -5;
 		map_projection(global);
 	}
-	if (key.key == MLX_KEY_RIGHT && key.action == MLX_REPEAT)
+	if (key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
 	{
 		global->map.x_move += +5;
 		map_projection(global);
 	}
-	if (key.key == MLX_KEY_UP && key.action == MLX_REPEAT)
+	if (key.key == MLX_KEY_UP && key.action == MLX_PRESS)
 	{
 		global->map.y_move += -5;
 		map_projection(global);
 	}
-	if (key.key == MLX_KEY_DOWN && key.action == MLX_REPEAT)
+	if (key.key == MLX_KEY_DOWN && key.action == MLX_PRESS)
 	{
 		global->map.y_move += +5;
 		map_projection(global);
@@ -51,7 +73,8 @@ void	keys_controls(mlx_key_data_t key, void *param)
 	global = (t_global *)param;
 	if (key.key == MLX_KEY_ESCAPE && key.action == MLX_PRESS)
 		mlx_close_window((mlx_t *)global->my_mlx);
-	key_support(key, param);
+	key_translations(key, param);
+	key_rotations(key, param);
 }
 
 int	mlx_initialize(t_global	*global, char *name)
@@ -88,7 +111,6 @@ int	main(int argc, char **argv)
 	mlx_initialize(&global, argv[1]);
 	map_projection(&global);
 	mlx_key_hook(global.my_mlx, &keys_controls, &global);
-	//mlx_loop_hook(global.my_mlx, (void *)map_projection, &global);
 	mlx_loop(global.my_mlx);
 	mlx_terminate(global.my_mlx);
 	let_it_go(&global.map, 3);

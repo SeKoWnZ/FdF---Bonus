@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:21:44 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/25 19:02:48 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:29:54 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,23 @@ void	change_perspective(t_map *map, t_point *proje)
 	limits[1].axis[Y] = WINY / 2;
 	i = -1;
 	while (++i < map->map_length)
-		isometric(map, &map->points[i], &proje[i], limits);
+		isometric(&map->points[i], &proje[i], limits);
 	i = -1;
 	while (++i < map->map_length)
 		ft_scale(&proje[i], limits);
+	// i = -1;
+	// while (++i < map->map_length)
+	// {
+	// 	rotate_x(map, &proje[i]);
+	// 	rotate_y(map, &proje[i]);
+	// 	rotate_z(map, &proje[i]);
+	// }
 }
 
-void	isometric(t_map *map, t_point *point, t_point *proje, t_point *lim)
+void	isometric(t_point *point, t_point *proje, t_point *lim)
 {
-	proje->axis[X] = (point->axis[X] - point->axis[Y]) * cos(M_PI / map->rot_x) + WINX / 2;
-	proje->axis[Y] = ((point->axis[X] + point->axis[Y]) * sin(M_PI / map->rot_y) + WINY / 2) - point->axis[Z];
+	proje->axis[X] = (point->axis[X] - point->axis[Y]) * cos(M_PI / 6) + WINX / 2;
+	proje->axis[Y] = ((point->axis[X] + point->axis[Y]) * sin(M_PI / 6) + WINY / 2) - point->axis[Z];
 	if (proje->axis[X] < lim[0].axis[X])
 		lim[0].axis[X] = proje->axis[X];
 	if (proje->axis[X] > lim[1].axis[X])
@@ -43,14 +50,28 @@ void	isometric(t_map *map, t_point *point, t_point *proje, t_point *lim)
 		lim[1].axis[Y] = proje->axis[Y];
 }
 
-// void	isometric_rotate(t_global *global, t_map *map, t_point *proje)
-// {
-// 	int i = -1;
-// 	while (++i < global->map.map_length)
-// 	{
-// 		proje->axis[X] = (map->points[i].axis[X] - map->points[i].axis[Y]) * cos(M_PI / map->rot_x) + WINX / 2;
-// 		proje->axis[Y] = ((map->points[i].axis[X] + map->points[i].axis[Y]) * sin(M_PI / map->rot_y) + WINY / 2) - map->points[i].axis[Z];
-// 	}
-// 	map_draw(global);
-// 	mlx_image_to_window(global->my_mlx, global->bitmap, 0, 0);
-// }
+void	rotate_x(t_map *map, t_point *a)
+{
+	float	tmp;
+
+	tmp = a->axis[Y];
+	a->axis[Y] = tmp * cos(map->rot_x) - a->axis[Z] * sin(map->rot_x);
+	a->axis[Z] = tmp * sin(map->rot_x) + a->axis[Z] * cos(map->rot_x);
+}
+
+void	rotate_y(t_map *map, t_point *a)
+{
+	float	tmp;
+
+	tmp = a->axis[X];
+	a->axis[X] = tmp * cos(map->rot_y) + a->axis[Z] * sin(map->rot_y);
+	a->axis[Z] = a->axis[Z] * cos(map->rot_y) - tmp * sin(map->rot_y);
+}
+
+void	rotate_z(t_map *map, t_point *a)
+{
+	float	tmp;
+	tmp = a->axis[X];
+	a->axis[X] = 2 * (tmp * cos(map->rot_z) - a->axis[Y] * sin(map->rot_z));
+	a->axis[Y] = 2 * (tmp * sin(map->rot_z) + a->axis[Y] * cos(map->rot_z));
+}

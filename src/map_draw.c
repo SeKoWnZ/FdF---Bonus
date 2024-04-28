@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:46:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/26 18:43:18 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:29:44 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,11 @@ void	map_draw(t_global *global)
 
 void	map_projection(t_global *global)
 {
-	int i = -1;
+	int i; 
+	
 	copy_map(global->map.points, global->map.cpy_proje, global->map.map_length);
-	change_perspective(&global->map, global->map.cpy_proje);ma
+	change_perspective(&global->map, global->map.cpy_proje);
+	i = -1;
 	while (++i < global->map.map_length)
 	{
 		global->map.cpy_proje[i].axis[X] += global->map.x_move;

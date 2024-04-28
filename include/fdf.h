@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/26 18:12:00 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/28 22:49:21 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_map
 	float			scale;
 	float			rot_x;
 	float			rot_y;
+	float			rot_z;
 	float			x_move;
 	float			y_move;
 	char			*map_memory;
@@ -127,9 +128,11 @@ int					into_bounds(t_point dot);
 // PROYECTION UTILS
 
 void				change_perspective(t_map *map, t_point *proje);
-void				isometric(t_map *map, t_point *point, t_point *proje, t_point *lim);
+void				isometric(t_point *point, t_point *proje, t_point *lim);
 void				ft_scale(t_point *point, t_point *lim);
-void				iso_rotate(t_global *global);
+void				rotate_x(t_map *map, t_point *a);
+void				rotate_y(t_map *map, t_point *a);
+void				rotate_z(t_map *map, t_point *a);
 
 // COLOR UTILS
 

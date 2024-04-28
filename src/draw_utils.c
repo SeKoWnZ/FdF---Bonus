@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:39:38 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/25 15:06:17 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:26:51 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	copy_map(t_point *src, t_point *dst, int len)
 
 int	into_bounds(t_point dot)
 {
-	if (dot.axis[X] > WINX - 1 || dot.axis[X] < 0 || dot.axis[Y] > WINY - 1
-		|| dot.axis[Y] < 0)
+	if (dot.axis[X] > WINX - 1 || dot.axis[X] < 1 || dot.axis[Y] > WINY - 1 || dot.axis[Y] < 1)
 		return (0);
 	return (1);
 }
