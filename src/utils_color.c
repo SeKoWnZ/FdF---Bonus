@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 21:19:44 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/10 16:52:56 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:13:03 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int get_rgba(int r, int g, int b, int a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 int get_r(int rgba)
 {
-    return ((rgba >> 24) & 0xFF);
+	return ((rgba >> 24) & 0xFF);
 }
 
 int get_g(int rgba)
 {
-    return ((rgba >> 16) & 0xFF);
+	return ((rgba >> 16) & 0xFF);
 }
 
-int get_b(int rgba)
+int	get_b(int rgba)
 {
-    return ((rgba >> 8) & 0xFF);
+	return ((rgba >> 8) & 0xFF);
 }
 
-int get_a(int rgba)
+int	get_a(int rgba)
 {
-    return (rgba & 0xFF);
+	return (rgba & 0xFF);
 }

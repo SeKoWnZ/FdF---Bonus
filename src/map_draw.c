@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:46:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/29 01:29:44 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 19:11:19 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_scale(t_point *point, t_point *lim)
 	point->axis[Y] = ((point->axis[Y] - lim[0].axis[Y]) * scale_l) + y_min;
 }
 
-void	set_line_param(t_global *global, t_point a, t_point b)
+void	set_line_direction(t_global *global, t_point a, t_point b)
 {
 	global->line.dx = fabsf(b.axis[X] - a.axis[X]);
 	global->line.dy = fabsf(b.axis[Y] - a.axis[Y]);
@@ -48,25 +48,26 @@ void	set_line_param(t_global *global, t_point a, t_point b)
 
 void	drawing(t_global *global, t_point strt, t_point a, t_point b)
 {
-	set_line_param(global, a, b);
-    while (1)
+	set_line_direction(global, a, b);
+	while (1)
 	{
-        if (into_bounds(a))
-            mlx_put_pixel(global->bitmap, a.axis[X], a.axis[Y], grad_point(strt, a, b));
-        if (fabsf(a.axis[X] - b.axis[X]) <= TOLERANCE && fabsf(a.axis[Y] - b.axis[Y]) <= TOLERANCE)
-            break;
-        global->line.e2 = 2 * global->line.err;
-        if (global->line.e2 > -global->line.dy)
+		if (into_bounds(a))
+			mlx_put_pixel(global->bitmap, a.axis[X], a.axis[Y], grad_point(strt, a, b));
+		if (fabsf(a.axis[X] - b.axis[X]) <= TOLERANCE && fabsf(a.axis[Y]
+				- b.axis[Y]) <= TOLERANCE)
+			break ;
+		global->line.e2 = 2 * global->line.err;
+		if (global->line.e2 > -global->line.dy)
 		{
-            global->line.err -= global->line.dy;
-            a.axis[X] += global->line.sx;
-        }
-        if (global->line.e2 < global->line.dx)
+			global->line.err -= global->line.dy;
+			a.axis[X] += global->line.sx;
+		}
+		if (global->line.e2 < global->line.dx)
 		{
-            global->line.err += global->line.dx;
-            a.axis[Y] += global->line.sy;
-        }
-    }
+			global->line.err += global->line.dx;
+			a.axis[Y] += global->line.sy;
+		}
+	}
 }
 
 void	paint_lines(t_global *global, t_point *proje)
@@ -79,9 +80,10 @@ void	paint_lines(t_global *global, t_point *proje)
 	while (++i < global->map.map_length - 1)
 	{
 		if (i < global->map.map_length - global->map.limits.axis[X])
-			drawing(global,proje[i], proje[i], proje[i + (int)global->map.limits.axis[X]]);
+			drawing(global, proje[i], proje[i], proje[i
+				+ (int)global->map.limits.axis[X]]);
 		if (j < (global->map.limits.axis[X] - 1))
-			drawing(global,proje[i], proje[i], proje[i + 1]);
+			drawing(global, proje[i], proje[i], proje[i + 1]);
 		j++;
 		if (j == global->map.limits.axis[X])
 			j = 0;
@@ -95,17 +97,24 @@ void	map_draw(t_global *global)
 	i = -1;
 	while (++i < global->map.map_length)
 	{
+		global->map.cpy_proje[i].axis[X] *= 1;
+		global->map.cpy_proje[i].axis[Y] *= 1;
+		global->map.cpy_proje[i].axis[X] += (WINX / 2);
+		global->map.cpy_proje[i].axis[Y] += (WINY / 2);
 		if (into_bounds(global->map.cpy_proje[i]))
-			mlx_put_pixel(global->bitmap, global->map.cpy_proje[i].axis[X], global->map.cpy_proje[i].axis[Y],
+		{
+			mlx_put_pixel(global->bitmap, global->map.cpy_proje[i].axis[X],
+				global->map.cpy_proje[i].axis[Y],
 				global->map.cpy_proje[i].color);
+		}
 	}
 	paint_lines(global, global->map.cpy_proje);
 }
 
 void	map_projection(t_global *global)
 {
-	int i; 
-	
+	int	i;
+
 	copy_map(global->map.points, global->map.cpy_proje, global->map.map_length);
 	change_perspective(&global->map, global->map.cpy_proje);
 	i = -1;

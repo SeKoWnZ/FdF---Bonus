@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:21:44 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/29 01:29:54 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:13:42 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,41 @@
 void	change_perspective(t_map *map, t_point *proje)
 {
 	int		i;
-	t_point	limits[2];
+	// t_point	limits[2];
 
-	limits[0].axis[X] = WINX / 2;
-	limits[0].axis[Y] = WINY / 2;
-	limits[1].axis[X] = WINX / 2;
-	limits[1].axis[Y] = WINY / 2;
-	i = -1;
-	while (++i < map->map_length)
-		isometric(&map->points[i], &proje[i], limits);
-	i = -1;
-	while (++i < map->map_length)
-		ft_scale(&proje[i], limits);
+	// limits[0].axis[X] = WINX / 2;
+	// limits[0].axis[Y] = WINY / 2;
+	// limits[1].axis[X] = WINX / 2;
+	// limits[1].axis[Y] = WINY / 2;
 	// i = -1;
 	// while (++i < map->map_length)
-	// {
-	// 	rotate_x(map, &proje[i]);
-	// 	rotate_y(map, &proje[i]);
-	// 	rotate_z(map, &proje[i]);
-	// }
+	// 	ft_scale(&proje[i], limits);
+	// i = -1;
+	// while (++i < map->map_length)
+	// 	isometric(&map->points[i], &proje[i]);
+	i = -1;
+	while (++i < map->map_length)
+	{
+		rotate_z(map, &proje[i]);
+		rotate_x(map, &proje[i]);
+		rotate_y(map, &proje[i]);
+	}
 }
 
-void	isometric(t_point *point, t_point *proje, t_point *lim)
+void	isometric(t_point *point, t_point *proje)
 {
-	proje->axis[X] = (point->axis[X] - point->axis[Y]) * cos(M_PI / 6) + WINX / 2;
-	proje->axis[Y] = ((point->axis[X] + point->axis[Y]) * sin(M_PI / 6) + WINY / 2) - point->axis[Z];
-	if (proje->axis[X] < lim[0].axis[X])
-		lim[0].axis[X] = proje->axis[X];
-	if (proje->axis[X] > lim[1].axis[X])
-		lim[1].axis[X] = proje->axis[X];
-	if (proje->axis[Y] < lim[0].axis[Y])
-		lim[0].axis[Y] = proje->axis[Y];
-	if (proje->axis[Y] > lim[1].axis[Y])
-		lim[1].axis[Y] = proje->axis[Y];
+	float	tmp;
+	tmp = proje->axis[X];
+	proje->axis[X] = (tmp - point->axis[Y]) * cos(M_PI / 6);
+	proje->axis[Y] = (tmp + point->axis[Y]) * sin(M_PI / 6) - point->axis[Z];
+	// if (proje->axis[X] < lim[0].axis[X])
+	// 	lim[0].axis[X] = proje->axis[X];
+	// if (proje->axis[X] > lim[1].axis[X])
+	// 	lim[1].axis[X] = proje->axis[X];
+	// if (proje->axis[Y] < lim[0].axis[Y])
+	// 	lim[0].axis[Y] = proje->axis[Y];
+	// if (proje->axis[Y] > lim[1].axis[Y])
+	// 	lim[1].axis[Y] = proje->axis[Y];
 }
 
 void	rotate_x(t_map *map, t_point *a)
@@ -71,7 +73,8 @@ void	rotate_y(t_map *map, t_point *a)
 void	rotate_z(t_map *map, t_point *a)
 {
 	float	tmp;
+
 	tmp = a->axis[X];
-	a->axis[X] = 2 * (tmp * cos(map->rot_z) - a->axis[Y] * sin(map->rot_z));
-	a->axis[Y] = 2 * (tmp * sin(map->rot_z) + a->axis[Y] * cos(map->rot_z));
+	a->axis[X] = tmp * cos(map->rot_z) - a->axis[Y] * sin(map->rot_z);
+	a->axis[Y] = tmp * sin(map->rot_z) + a->axis[Y] * cos(map->rot_z);
 }

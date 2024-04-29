@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:35:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/29 01:24:30 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 19:04:11 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,32 @@ void	key_rotations(mlx_key_data_t key, void *param)
 	global = (t_global *)param;
 	if (key.key == MLX_KEY_W && key.action == MLX_PRESS)
 	{
-		global->map.rot_x += 1 * (M_PI / 180);
+		global->map.rot_x += 5 * (M_PI / 180);
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_S && key.action == MLX_PRESS)
+	{
+		global->map.rot_x -= 5 * (M_PI / 180);
 		map_projection(global);
 	}
 	if (key.key == MLX_KEY_D && key.action == MLX_PRESS)
 	{
-		global->map.rot_z += 1 * (M_PI / 180);
+		global->map.rot_z += 5 * (M_PI / 180);
 		map_projection(global);
 	}
-		if (key.key == MLX_KEY_A && key.action == MLX_PRESS)
+	if (key.key == MLX_KEY_A && key.action == MLX_PRESS)
 	{
-		global->map.rot_z -= 1 * (M_PI / 180);
+		global->map.rot_z -= 5 * (M_PI / 180);
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_Q && key.action == MLX_PRESS)
+	{
+		global->map.rot_y += 5 * (M_PI / 180);
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_E && key.action == MLX_PRESS)
+	{
+		global->map.rot_y -= 5 * (M_PI / 180);
 		map_projection(global);
 	}
 }

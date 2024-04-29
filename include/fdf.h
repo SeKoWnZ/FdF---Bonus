@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/28 22:49:21 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:01:49 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WINY 1080
 
 # define READ_BUFFER 500000
-# define TOLERANCE 0.6
+# define TOLERANCE 0.8
 
 enum				e_axis
 {
@@ -89,12 +89,13 @@ typedef struct s_global
 // COLORS
 
 # define BLACK 0x000000FF
+# define CASI_BLACK 0x010000ff
 # define WHITE 0xFFFFFFFF
 # define RED 0xFF0000FF
 # define YELLOW 0xFFFF00FF
 # define PURPLE 0x9800C8FF
 
-# define DEFAULT_TOP PURPLE
+# define DEFAULT_TOP RED
 # define DEFAULT_GRO BLACK
 // ERRORS DEF
 
@@ -128,7 +129,7 @@ int					into_bounds(t_point dot);
 // PROYECTION UTILS
 
 void				change_perspective(t_map *map, t_point *proje);
-void				isometric(t_point *point, t_point *proje, t_point *lim);
+void				isometric(t_point *point, t_point *proje);
 void				ft_scale(t_point *point, t_point *lim);
 void				rotate_x(t_map *map, t_point *a);
 void				rotate_y(t_map *map, t_point *a);
