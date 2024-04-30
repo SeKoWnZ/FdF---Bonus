@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/29 18:01:49 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 02:09:07 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_global
 # define YELLOW 0xFFFF00FF
 # define PURPLE 0x9800C8FF
 
-# define DEFAULT_TOP RED
+# define DEFAULT_TOP PURPLE
 # define DEFAULT_GRO BLACK
 // ERRORS DEF
 
@@ -128,7 +128,7 @@ int					into_bounds(t_point dot);
 
 // PROYECTION UTILS
 
-void				change_perspective(t_map *map, t_point *proje);
+void				change_perspective(t_global *global, t_point *proje);
 void				isometric(t_point *point, t_point *proje);
 void				ft_scale(t_point *point, t_point *lim);
 void				rotate_x(t_map *map, t_point *a);
@@ -147,6 +147,10 @@ int					get_r(int rgba);
 int					get_g(int rgba);
 int					get_b(int rgba);
 int					get_a(int rgba);
+
+//KEY_HOOKS
+
+void	keys_controls(mlx_key_data_t key, void *param);
 
 // BORRAR BORRAR
 

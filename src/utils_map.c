@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:35:21 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/29 00:42:18 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 01:33:04 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	map_init(t_map *map)
 	map->map_length = 0;
 	map->max_z = 0;
 	map->min_z = 0;
-	map->scale = 1;
+	map->scale = 0;
 	map->rot_x = 0;
 	map->rot_y = 0;
 	map->rot_z = 0;

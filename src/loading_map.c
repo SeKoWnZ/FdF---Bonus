@@ -6,11 +6,35 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:42:43 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/25 16:03:24 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 01:57:18 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+
+void	init_scale(t_map *map)
+{
+	float	max;
+
+	if (map->limits.axis[X] > map->limits.axis[Y])
+		max = map->limits.axis[X];
+	else
+		max = map->limits.axis[Y];
+	if (max < 20)
+		map->scale = 100;
+	if (max < 50)
+		map->scale = 50;
+	else if (max < 100)
+		map->scale = 25;
+	else if (max < 500)
+		map->scale = 5;
+	else if (max < 1000)
+		map->scale = 2;
+	else if (max < 2000)
+		map->scale = 1;
+	else
+		map->scale = 0.5;
+}
 
 void	split_n_load(t_map *map, char *line, int y_index)
 {
@@ -109,4 +133,5 @@ void	load_fdf_map(t_map *map, char *filemap)
 	close(fd);
 	parse_n_size(map);
 	fill_points(map);
+	init_scale(map);
 }

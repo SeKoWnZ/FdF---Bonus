@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:46:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/29 19:11:19 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 02:02:25 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,44 +90,16 @@ void	paint_lines(t_global *global, t_point *proje)
 	}
 }
 
-void	map_draw(t_global *global)
-{
-	int	i;
-
-	i = -1;
-	while (++i < global->map.map_length)
-	{
-		global->map.cpy_proje[i].axis[X] *= 1;
-		global->map.cpy_proje[i].axis[Y] *= 1;
-		global->map.cpy_proje[i].axis[X] += (WINX / 2);
-		global->map.cpy_proje[i].axis[Y] += (WINY / 2);
-		if (into_bounds(global->map.cpy_proje[i]))
-		{
-			mlx_put_pixel(global->bitmap, global->map.cpy_proje[i].axis[X],
-				global->map.cpy_proje[i].axis[Y],
-				global->map.cpy_proje[i].color);
-		}
-	}
-	paint_lines(global, global->map.cpy_proje);
-}
 
 void	map_projection(t_global *global)
 {
-	int	i;
-
 	copy_map(global->map.points, global->map.cpy_proje, global->map.map_length);
-	change_perspective(&global->map, global->map.cpy_proje);
-	i = -1;
-	while (++i < global->map.map_length)
-	{
-		global->map.cpy_proje[i].axis[X] += global->map.x_move;
-		global->map.cpy_proje[i].axis[Y] += global->map.y_move;
-	}
+	change_perspective(global, global->map.cpy_proje);
 	if (global->bitmap)
 	{
 		mlx_delete_image(global->my_mlx, global->bitmap);
 		global->bitmap = mlx_new_image(global->my_mlx, WINX, WINY);
 	}
-	map_draw(global);
+	paint_lines(global, global->map.cpy_proje);
 	mlx_image_to_window(global->my_mlx, global->bitmap, 0, 0);
 }
