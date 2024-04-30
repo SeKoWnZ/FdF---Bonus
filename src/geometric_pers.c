@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:21:44 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 02:21:41 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:50:43 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	change_perspective(t_global *global, t_point *proje)
 	int		i;
 
 	// i = -1;
-	// while (++i < map->map_length)
-	// 	isometric(&map->points[i], &proje[i]);
+	// while (++i < global->map.map_length)
+	// 	isometric(&global->map.points[i], &proje[i]);
 	i = -1;
 	while (++i < global->map.map_length)
 	{

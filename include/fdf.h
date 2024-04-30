@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 02:09:07 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:51:53 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 
 # define READ_BUFFER 500000
 # define TOLERANCE 0.8
+
+# define MENU "||||||-| KEYBINDS |-||||||"
+# define MENU1 "   -->Translations<--"
+# define MENU2 "       ARROW KEYS"
+# define MENU3 "    -->Rotations<--"
+# define MENU4 " [A] & [D] - rotate Z axis"
+# define MENU5 " [W] & [S] - rotate X axis"
+# define MENU6 " [Q] & [E] - rotate Y axis"
+# define MENU7 "   -->Zoom in / out<--"
+# define MENU8 "       [+] & [-]"
 
 enum				e_axis
 {
@@ -148,13 +158,14 @@ int					get_g(int rgba);
 int					get_b(int rgba);
 int					get_a(int rgba);
 
-//KEY_HOOKS
+// KEY_HOOKS
 
-void	keys_controls(mlx_key_data_t key, void *param);
+void				keys_controls(mlx_key_data_t key, void *param);
+void				key_perspectives(mlx_key_data_t key, void *param);
 
 // BORRAR BORRAR
 
 void				print_map_status(t_map *map, char *status);
-//void	isometric_rotate(t_global *global, t_map *map, t_point *proje);
+// void	isometric_rotate(t_global *global, t_map *map, t_point *proje);
 
 #endif

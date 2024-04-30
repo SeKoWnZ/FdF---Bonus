@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:35:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 00:59:03 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:47:16 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ int	main(int argc, char **argv)
 	load_fdf_map(&global.map, argv[1]);
 	mlx_initialize(&global, argv[1]);
 	map_projection(&global);
+	mlx_put_string(global.my_mlx, MENU, 10, 10);
+	mlx_put_string(global.my_mlx, MENU1, 10, 30);
+	mlx_put_string(global.my_mlx, MENU2, 10, 50);
+	mlx_put_string(global.my_mlx, MENU3, 10, 70);
+	mlx_put_string(global.my_mlx, MENU4, 10, 90);
+	mlx_put_string(global.my_mlx, MENU5, 10, 110);
+	mlx_put_string(global.my_mlx, MENU6, 10, 130);
+	mlx_put_string(global.my_mlx, MENU7, 10, 150);
+	mlx_put_string(global.my_mlx, MENU8, 10, 170);
 	mlx_key_hook(global.my_mlx, &keys_controls, &global);
 	mlx_loop(global.my_mlx);
 	mlx_terminate(global.my_mlx);

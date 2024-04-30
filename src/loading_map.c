@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:42:43 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 01:57:18 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:15:07 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_scale(t_map *map)
 		max = map->limits.axis[X];
 	else
 		max = map->limits.axis[Y];
-	if (max < 20)
+	if (max < 25)
 		map->scale = 100;
 	if (max < 50)
 		map->scale = 50;

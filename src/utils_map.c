@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:35:21 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 01:33:04 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/04/30 19:06:33 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	map_init(t_map *map)
 	map->max_z = 0;
 	map->min_z = 0;
 	map->scale = 0;
-	map->rot_x = 0;
+	map->rot_x = 0.959932;
 	map->rot_y = 0;
-	map->rot_z = 0;
+	map->rot_z = 0.785398;
 	map->x_move = 0;
-	map->y_move = 0;
+	map->y_move = 3;
 	map->map_memory = NULL;
 	init_colors(&(map->colors));
 }
@@ -65,4 +65,3 @@ void	parse_n_size(t_map *map)
 		exterminate(ERROR_LINES, map, 1);
 	map->map_length = map->limits.axis[X] * map->limits.axis[Y];
 }
-
