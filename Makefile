@@ -6,7 +6,7 @@
 #    By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:26:36 by jose-gon          #+#    #+#              #
-#    Updated: 2024/05/02 18:22:21 by jose-gon         ###   ########.fr        #
+#    Updated: 2024/05/02 18:59:05 by jose-gon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LFLAGS = -L./include/Libft -lft -L./include/MLX42/ -lmlx42 -Iinclude -lglfw -L"/
 #LFLAGS = -L./include/Libft -lft -L./include/MLX42/ -lmlx42 -Iinclude -ldl -lglfw -pthread -lm
 
 FILES = FdF.c utils_map.c loading_map.c utils_color.c utils_color2.c \
-map_draw.c draw_utils.c draw_utils2.c geometric_pers.c let_it_go.c key_hooks.c key_hooks2.c
+map_draw.c draw_utils.c geometric_pers.c let_it_go.c
 
 B_FILES = FdF_bonus.c utils_map_bonus.c loading_map_bonus.c utils_color_bonus.c \
 utils_color2_bonus.c map_draw_bonus.c draw_utils_bonus.c draw_utils2_bonus.c \

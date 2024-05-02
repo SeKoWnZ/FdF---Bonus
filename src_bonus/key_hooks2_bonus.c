@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hooks2.c                                       :+:      :+:    :+:   */
+/*   key_hooks2_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:39:47 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 17:09:43 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:45:00 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
+#include <fdf_bonus.h>
 
 void	key_perspectives(mlx_key_data_t key, void *param)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 19:09:47 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:09:51 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@
 
 # define DEFAULT_TOP PURPLE
 # define DEFAULT_GRO BLACK
+
+// MENU
+
+# define MENU " ||||||-| KEYBINDS |-||||||"
+# define MENU1 "  --> Translations <--"
+# define MENU2 "       ARROW KEYS"
+# define MENU3 "   --> Rotations <--"
+# define MENU4 "[A] & [D] - rotate Z axis"
+# define MENU5 "[W] & [S] - rotate X axis"
+# define MENU6 "[Q] & [E] - rotate Y axis"
+# define MENU7 "  --> Zoom in / out <--"
+# define MENU8 "       [+] & [-]"
+# define MENU9 "--> Change perspective <--"
+# define MENU10 "    [I] - Isometric"
+# define MENU11 "    [O] - Ortogonal"
+# define MENU12 "--> RESET PROJECTION <--"
+# define MENU13 "      [BACKSPACE]"
+# define MENU14 " --> Color scheme <--"
+# define MENU15 "   [KP1]/[KP2]/[KP3]"
+# define MENU16 "  [KP0] - reset color"
 
 // STRUCT DEF
 
@@ -136,6 +156,7 @@ void	change_perspective(t_global *global, t_point *proje);
 void	rotate_x(t_map *map, t_point *a);
 void	rotate_y(t_map *map, t_point *a);
 void	rotate_z(t_map *map, t_point *a);
+void	draw_menu(mlx_t *my_mlx);
 
 // COLOR UTILS
 
@@ -143,11 +164,19 @@ float	color_steps(float x1, float x2, float x);
 void	set_point_color(t_map *map);
 void	point_hex_color(t_map *map, char *value, t_point *point);
 void	grade_color(t_map *map, t_point *point);
+void	recolorize(t_map *map, t_point *point, unsigned ground, unsigned top);
 int		grad_point(t_point a, t_point b, t_point c);
 int		get_rgba(int r, int g, int b, int a);
 int		get_r(int rgba);
 int		get_g(int rgba);
 int		get_b(int rgba);
 int		get_a(int rgba);
+
+// KEY_HOOKS
+
+void	keys_controls(mlx_key_data_t key, void *param);
+void	key_perspectives(mlx_key_data_t key, void *param);
+void	key_colorize(mlx_key_data_t key, void *param);
+void	key_resets(mlx_key_data_t key, void *param);
 
 #endif

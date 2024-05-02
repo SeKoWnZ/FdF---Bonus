@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:46:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 17:47:23 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:54:42 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,6 @@ void	paint_lines(t_global *global, t_point *proje)
 
 void	map_projection(t_global *global)
 {
-	int	i;
-
-	i = -1;
-	if (global->map.colorize == 1)
-		while (++i < global->map.map_length)
-			recolorize(&global->map, &global->map.points[i],
-				global->map.colors.groundcolor, global->map.colors.topcolor);
-	if (global->map.colorize == 2)
-		while (++i < global->map.map_length)
-			global->map.points[i].color = global->map.points[i].color_r;
-	global->map.colorize = 0;
 	copy_map(global->map.points, global->map.cpy_proje, global->map.map_length);
 	change_perspective(global, global->map.cpy_proje);
 	if (global->bitmap)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_draw.c                                         :+:      :+:    :+:   */
+/*   map_draw_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:46:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 17:47:23 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:45:16 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
+#include <fdf_bonus.h>
 
 void	set_line_direction(t_global *global, t_point a, t_point b)
 {
