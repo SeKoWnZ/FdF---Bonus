@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:21:44 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 17:50:43 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 01:46:01 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ void	change_perspective(t_global *global, t_point *proje)
 {
 	int		i;
 
-	// i = -1;
-	// while (++i < global->map.map_length)
-	// 	isometric(&global->map.points[i], &proje[i]);
 	i = -1;
 	while (++i < global->map.map_length)
 	{
@@ -32,14 +29,6 @@ void	change_perspective(t_global *global, t_point *proje)
 		proje[i].axis[X] += (WINX / 2);
 		proje[i].axis[Y] += (WINY / 2);
 	}
-}
-
-void	isometric(t_point *point, t_point *proje)
-{
-	float	tmp;
-	tmp = proje->axis[X];
-	proje->axis[X] = (tmp - point->axis[Y]) * cos(M_PI / 6);
-	proje->axis[Y] = (tmp + point->axis[Y]) * sin(M_PI / 6) - point->axis[Z];
 }
 
 void	rotate_x(t_map *map, t_point *a)

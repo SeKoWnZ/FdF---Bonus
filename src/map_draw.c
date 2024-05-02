@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:46:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 17:47:25 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 01:45:27 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,4 @@ void	map_projection(t_global *global)
 	}
 	paint_lines(global, global->map.cpy_proje);
 	mlx_image_to_window(global->my_mlx, global->bitmap, 0, 0);
-	printf("ROT_X: %f | ROT_Y: %f | ROT_Z: %f\n", global->map.rot_x, global->map.rot_y, global->map.rot_z);
 }

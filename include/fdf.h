@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 18:51:53 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 02:13:12 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@
 # define MENU4 " [A] & [D] - rotate Z axis"
 # define MENU5 " [W] & [S] - rotate X axis"
 # define MENU6 " [Q] & [E] - rotate Y axis"
-# define MENU7 "   -->Zoom in / out<--"
+# define MENU7 "  -->Zoom in / out<--"
 # define MENU8 "       [+] & [-]"
+# define MENU9 " -->Change perspective<--"
+# define MENU10 "     [I] - Isometric"
+# define MENU11 "     [O] - Ortogonal"
+# define MENU12 " -->RESET PROYECTION<--"
+# define MENU13 "         [SUPR]"
 
 enum				e_axis
 {
@@ -78,6 +83,7 @@ typedef struct s_map
 	int				max_z;
 	int				min_z;
 	float			scale;
+	float			scale_r;
 	float			rot_x;
 	float			rot_y;
 	float			rot_z;
@@ -139,11 +145,11 @@ int					into_bounds(t_point dot);
 // PROYECTION UTILS
 
 void				change_perspective(t_global *global, t_point *proje);
-void				isometric(t_point *point, t_point *proje);
 void				ft_scale(t_point *point, t_point *lim);
 void				rotate_x(t_map *map, t_point *a);
 void				rotate_y(t_map *map, t_point *a);
 void				rotate_z(t_map *map, t_point *a);
+void				draw_menu(mlx_t *my_mlx);
 
 // COLOR UTILS
 

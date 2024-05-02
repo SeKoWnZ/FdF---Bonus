@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:42:43 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 11:15:07 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 02:14:29 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_scale(t_map *map)
 		map->scale = 1;
 	else
 		map->scale = 0.5;
+	map->scale_r = map->scale;
 }
 
 void	split_n_load(t_map *map, char *line, int y_index)

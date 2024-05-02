@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 00:58:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/04/30 19:02:59 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 02:20:07 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ void	key_scale(mlx_key_data_t key, void *param)
 	if (key.key == MLX_KEY_KP_ADD && key.action == MLX_PRESS)
 	{
 		global->map.scale *= 1.2;
+		map_projection(global);
+	}
+	if (key.key == MLX_KEY_BACKSPACE && key.action == MLX_PRESS)
+	{
+		global->map.scale = global->map.scale_r;
+		global->map.y_move = 3;
+		global->map.x_move = 0;
+		global->map.rot_x = 0.959932;
+		global->map.rot_y = 0;
+		global->map.rot_z = 0.785398;
 		map_projection(global);
 	}
 }
