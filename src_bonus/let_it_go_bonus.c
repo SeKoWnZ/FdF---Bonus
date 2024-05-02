@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_color.c                                      :+:      :+:    :+:   */
+/*   let_it_go.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/29 21:19:44 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 13:32:47 by jose-gon         ###   ########.fr       */
+/*   Created: 2024/04/21 13:21:52 by jose-gon          #+#    #+#             */
+/*   Updated: 2024/04/26 16:02:49 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int	get_rgba(int r, int g, int b, int a)
+void	let_it_go(t_map *map, int flag)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	if (flag >= 1)
+		free(map->map_memory);
+	if (flag >= 2)
+		free(map->points);
+	if (flag >= 3)
+		free(map->cpy_proje);
 }
 
-int	get_r(int rgba)
+void	exterminate(char *error, t_map *map, int flag)
 {
-	return ((rgba >> 24) & 0xFF);
-}
-
-int	get_g(int rgba)
-{
-	return ((rgba >> 16) & 0xFF);
-}
-
-int	get_b(int rgba)
-{
-	return ((rgba >> 8) & 0xFF);
-}
-
-int	get_a(int rgba)
-{
-	return (rgba & 0xFF);
+	if (errno == 0)
+	{
+		let_it_go(map, flag);
+		ft_putendl_fd(error, 2);
+	}
+	else
+	{
+		let_it_go(map, flag);
+		perror(error);
+	}
+	exit(1);
 }

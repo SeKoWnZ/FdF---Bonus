@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 02:13:12 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:09:23 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,41 @@
 # define READ_BUFFER 500000
 # define TOLERANCE 0.8
 
-# define MENU "||||||-| KEYBINDS |-||||||"
-# define MENU1 "   -->Translations<--"
+// COLORS
+
+# define BLACK 0x000000FF
+# define WHITE 0xFFFFFFFF
+# define RED 0xFF0000FF
+# define GREEN 0x00FF00FF
+# define BLUE 0x0000FFFF
+# define YELLOW 0xFFFF00FF
+# define PURPLE 0x9800C8FF
+# define ORANGE 0xFF6400FF
+
+# define DEFAULT_TOP PURPLE
+# define DEFAULT_GRO BLACK
+
+// MENU
+
+# define MENU " ||||||-| KEYBINDS |-||||||"
+# define MENU1 "  --> Translations <--"
 # define MENU2 "       ARROW KEYS"
-# define MENU3 "    -->Rotations<--"
-# define MENU4 " [A] & [D] - rotate Z axis"
-# define MENU5 " [W] & [S] - rotate X axis"
-# define MENU6 " [Q] & [E] - rotate Y axis"
-# define MENU7 "  -->Zoom in / out<--"
+# define MENU3 "   --> Rotations <--"
+# define MENU4 "[A] & [D] - rotate Z axis"
+# define MENU5 "[W] & [S] - rotate X axis"
+# define MENU6 "[Q] & [E] - rotate Y axis"
+# define MENU7 "  --> Zoom in / out <--"
 # define MENU8 "       [+] & [-]"
-# define MENU9 " -->Change perspective<--"
-# define MENU10 "     [I] - Isometric"
-# define MENU11 "     [O] - Ortogonal"
-# define MENU12 " -->RESET PROYECTION<--"
+# define MENU9 "--> Change perspective <--"
+# define MENU10 "    [I] - Isometric"
+# define MENU11 "    [O] - Ortogonal"
+# define MENU12 "--> RESET PROJECTION <--"
 # define MENU13 "         [SUPR]"
+# define MENU14 " --> Color scheme <--"
+# define MENU15 "   [KP1]/[KP2]/[KP3]"
+# define MENU16 "  [KP0] - reset color"
+
+// STRUCT DEF
 
 enum				e_axis
 {
@@ -72,6 +93,7 @@ typedef struct s_point
 	float			axis[3];
 	unsigned int	hex_color;
 	unsigned int	color;
+	unsigned int	color_r;
 }					t_point;
 
 typedef struct s_map
@@ -82,6 +104,7 @@ typedef struct s_map
 	int				map_length;
 	int				max_z;
 	int				min_z;
+	int				colorize;
 	float			scale;
 	float			scale_r;
 	float			rot_x;
@@ -102,17 +125,6 @@ typedef struct s_global
 	char			*name;
 }					t_global;
 
-// COLORS
-
-# define BLACK 0x000000FF
-# define CASI_BLACK 0x010000ff
-# define WHITE 0xFFFFFFFF
-# define RED 0xFF0000FF
-# define YELLOW 0xFFFF00FF
-# define PURPLE 0x9800C8FF
-
-# define DEFAULT_TOP PURPLE
-# define DEFAULT_GRO BLACK
 // ERRORS DEF
 
 # define ERROR_ARG "ERROR - Incorrect number of arguments"
@@ -126,52 +138,48 @@ typedef struct s_global
 
 // ERROR
 
-void				exterminate(char *error, t_map *map, int flag);
-void				let_it_go(t_map *map, int flag);
+void	exterminate(char *error, t_map *map, int flag);
+void	let_it_go(t_map *map, int flag);
 
 // MAP UTILS
 
-void				load_fdf_map(t_map *map, char *filemap);
-void				map_init(t_map *map);
-void				parse_n_size(t_map *map);
-void				map_projection(t_global *global);
+void	load_fdf_map(t_map *map, char *filemap);
+void	map_init(t_map *map);
+void	parse_n_size(t_map *map);
+void	map_projection(t_global *global);
 
 // MAP UTILS
 
-void				copy_map(t_point *src, t_point *dst, int len);
-void				map_draw(t_global *global);
-int					into_bounds(t_point dot);
+void	copy_map(t_point *src, t_point *dst, int len);
+int		into_bounds(t_point dot);
 
 // PROYECTION UTILS
 
-void				change_perspective(t_global *global, t_point *proje);
-void				ft_scale(t_point *point, t_point *lim);
-void				rotate_x(t_map *map, t_point *a);
-void				rotate_y(t_map *map, t_point *a);
-void				rotate_z(t_map *map, t_point *a);
-void				draw_menu(mlx_t *my_mlx);
+void	change_perspective(t_global *global, t_point *proje);
+void	rotate_x(t_map *map, t_point *a);
+void	rotate_y(t_map *map, t_point *a);
+void	rotate_z(t_map *map, t_point *a);
+void	draw_menu(mlx_t *my_mlx);
 
 // COLOR UTILS
 
-float				color_steps(float x1, float x2, float x);
-void				set_point_color(t_map *map);
-void				point_hex_color(t_map *map, char *value, t_point *point);
-void				grade_color(t_map *map, t_point *point);
-int					grad_point(t_point a, t_point b, t_point c);
-int					get_rgba(int r, int g, int b, int a);
-int					get_r(int rgba);
-int					get_g(int rgba);
-int					get_b(int rgba);
-int					get_a(int rgba);
+float	color_steps(float x1, float x2, float x);
+void	set_point_color(t_map *map);
+void	point_hex_color(t_map *map, char *value, t_point *point);
+void	grade_color(t_map *map, t_point *point);
+void	recolorize(t_map *map, t_point *point, unsigned ground, unsigned top);
+int		grad_point(t_point a, t_point b, t_point c);
+int		get_rgba(int r, int g, int b, int a);
+int		get_r(int rgba);
+int		get_g(int rgba);
+int		get_b(int rgba);
+int		get_a(int rgba);
 
 // KEY_HOOKS
 
-void				keys_controls(mlx_key_data_t key, void *param);
-void				key_perspectives(mlx_key_data_t key, void *param);
-
-// BORRAR BORRAR
-
-void				print_map_status(t_map *map, char *status);
-// void	isometric_rotate(t_global *global, t_map *map, t_point *proje);
+void	keys_controls(mlx_key_data_t key, void *param);
+void	key_perspectives(mlx_key_data_t key, void *param);
+void	key_colorize(mlx_key_data_t key, void *param);
+void	key_resets(mlx_key_data_t key, void *param);
 
 #endif
