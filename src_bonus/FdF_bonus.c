@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:35:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 18:44:44 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:16:20 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int	main(int argc, char **argv)
 	load_fdf_map(&global.map, argv[1]);
 	mlx_initialize(&global, argv[1]);
 	map_projection(&global);
-	draw_menu(global.my_mlx);
-	mlx_key_hook(global.my_mlx, &keys_controls, &global);
+	//draw_menu(global.my_mlx);
+	mlx_loop_hook(global.my_mlx, &keys_controls, &global);
+	mlx_key_hook(global.my_mlx, &key_presses, &global);
 	mlx_loop(global.my_mlx);
 	mlx_terminate(global.my_mlx);
 	let_it_go(&global.map, 3);

@@ -6,12 +6,12 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:06:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 19:09:51 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:32:49 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "Libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
@@ -19,9 +19,10 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
+# include <pthread.h>
 
-# define WINX 1920
-# define WINY 1080
+# define WINX 3840
+# define WINY 2160
 
 # define READ_BUFFER 500000
 # define TOLERANCE 0.8
@@ -174,9 +175,10 @@ int		get_a(int rgba);
 
 // KEY_HOOKS
 
-void	keys_controls(mlx_key_data_t key, void *param);
+void	keys_controls(void *param);
 void	key_perspectives(mlx_key_data_t key, void *param);
 void	key_colorize(mlx_key_data_t key, void *param);
 void	key_resets(mlx_key_data_t key, void *param);
+void	key_presses(mlx_key_data_t key, void *param);
 
 #endif

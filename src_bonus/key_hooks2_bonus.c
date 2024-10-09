@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:39:47 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 18:45:00 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:17:03 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,11 @@ void	key_resets(mlx_key_data_t key, void *param)
 		global->map.rot_z = 0.785398;
 		map_projection(global);
 	}
+}
+
+void	key_presses(mlx_key_data_t key, void *param)
+{
+	key_perspectives(key, param);
+	key_colorize(key, param);
+	key_resets(key, param);
 }

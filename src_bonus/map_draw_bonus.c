@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 12:46:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/05/02 18:45:16 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:30:11 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ void	set_line_direction(t_global *global, t_point a, t_point b)
 void	drawing(t_global *global, t_point strt, t_point a, t_point b)
 {
 	set_line_direction(global, a, b);
+	// if (!into_bounds(a) && !into_bounds(b))
+	// 	return ;
 	while (1)
 	{
 		if (into_bounds(a))
 			mlx_put_pixel(global->bitmap, a.axis[X], a.axis[Y], grad_point(strt,
 					a, b));
+		else
+			return;
 		if (fabsf(a.axis[X] - b.axis[X]) <= TOLERANCE && fabsf(a.axis[Y]
 				- b.axis[Y]) <= TOLERANCE)
 			break ;
