@@ -123,6 +123,13 @@ typedef struct s_global
 	char			*name;
 }					t_global;
 
+typedef struct s_threads
+{
+	t_global *global;
+	t_point *proje;
+	int start;
+	int end;
+}	t_threads;
 // ERRORS DEF
 
 # define ERROR_ARG "ERROR - Incorrect number of arguments"

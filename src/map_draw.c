@@ -52,52 +52,6 @@ void	drawing(t_global *global, t_point strt, t_point a, t_point b)
 	}
 }
 
-#define NUM_THREADS 4
-#define MAX_LEN global->map_length / NUM_THREADS
-typedef struct s_threads
-{
-	t_global *global;
-	t_point *proje;
-	int start;
-	int end;
-}	t_threads;
-
-
-void *routine(void *args) {
-	t_threads *struct = args;
-	int	i;
-	int	j;
-
-	i = struct->start;
-	j = 0;
-	while (i < struct->end - 1)
-	{
-		if (i < struct->global->map.map_length - struct->global->map.limits.axis[X])
-			drawing(struct->global, struct->proje[i], struct->proje[i], struct->proje[i + (int)struct->global->map.limits.axis[X]]);
-		if (j < (struct->global->map.limits.axis[X] - 1))
-			drawing(struct->global, struct->proje[i], struct->proje[i], struct->proje[i + 1]);
-		j++;
-		if (j == struct->global->map.limits.axis[X])
-			j = 0;
-		i++;
-	}
-	return NULL;
-}
-
-void paint_lines_threads(t_global *global, t_point *proje) {
-	pthread_t threads[NUM_THREADS];
-	t_threads struct[NUM_THREADS];
-	for (int i = 0; i < NUM_THREADS; i++) {
-		struct[i].global = global;
-		struct[i].proje = proje;
-		struct[i].start = i * MAX_LEN;
-		struct[i].end = (i + 1) * MAX_LEN;
-		pthread_create(&threads[i], NULL, routine, (void *)&struct[i]);
-	}
-	for (int i = 0; i < NUM_THREADS; i++) {
-		pthread_join(threads[i], NULL);
-	}
-}
 void	paint_lines(t_global *global, t_point *proje)
 {
 	int	i;
