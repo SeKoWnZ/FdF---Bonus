@@ -125,7 +125,7 @@ typedef struct s_global
 
 typedef struct s_threads
 {
-	t_global *global;
+	t_global global;
 	t_point *proje;
 	int start;
 	int end;

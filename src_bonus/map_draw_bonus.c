@@ -69,12 +69,12 @@ void *routine(void *args) {
 	j = 0;
 	while (i < ts->end - 1)
 	{
-		if (i < ts->global->map.map_length - ts->global->map.limits.axis[X])
-			drawing(ts->global, ts->proje[i], ts->proje[i], ts->proje[i + (int)ts->global->map.limits.axis[X]]);
-		if (j < (ts->global->map.limits.axis[X] - 1))
-			drawing(ts->global, ts->proje[i], ts->proje[i], ts->proje[i + 1]);
+		if (i < ts->global.map.map_length - ts->global.map.limits.axis[X])
+			drawing(&ts->global, ts->proje[i], ts->proje[i], ts->proje[i + (int)ts->global.map.limits.axis[X]]);
+		if (j < (ts->global.map.limits.axis[X] - 1))
+			drawing(&ts->global, ts->proje[i], ts->proje[i], ts->proje[i + 1]);
 		j++;
-		if (j == ts->global->map.limits.axis[X])
+		if (j == ts->global.map.limits.axis[X])
 			j = 0;
 		i++;
 	}
@@ -85,7 +85,7 @@ void paint_lines_threads(t_global *global, t_point *proje) {
 	pthread_t threads[NUM_THREADS];
 	t_threads ts[NUM_THREADS];
 	for (int i = 0; i < NUM_THREADS; i++) {
-		ts[i].global = global;
+		ts[i].global = *global;
 		ts[i].proje = proje;
 		ts[i].start = i * (global->map.map_length / NUM_THREADS);
 		ts[i].end = (i + 1) * (global->map.map_length / NUM_THREADS);

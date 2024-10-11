@@ -17,9 +17,9 @@ void	key_scale(void *param)
 	t_global	*global;
 
 	global = (t_global *)param;
-	if (mlx_is_key_down(global->my_mlx, MLX_KEY_KP_SUBTRACT))
+	if (mlx_is_key_down(global->my_mlx, MLX_KEY_R))
 		global->map.scale *= 0.8;
-	if (mlx_is_key_down(global->my_mlx, MLX_KEY_KP_ADD))
+	if (mlx_is_key_down(global->my_mlx, MLX_KEY_T))
 		global->map.scale *= 1.2;
 }
 
