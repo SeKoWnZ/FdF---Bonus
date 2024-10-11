@@ -64,6 +64,7 @@ void	key_translations(void *param)
 		global->map.y_move += +5;
 }
 
+
 void	keys_controls(void *param)
 {
 	t_global	*global;
@@ -75,5 +76,7 @@ void	keys_controls(void *param)
 	key_rotations1(param);
 	key_rotations2(param);
 	key_scale(param);
+	//map_projection_threads(global);
 	map_projection(global);
+
 }
