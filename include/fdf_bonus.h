@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <pthread.h>
 
-# define WINX 3840
-# define WINY 2160
+# define WINX 1920
+# define WINY 1080
 
 # define READ_BUFFER 500000
 # define TOLERANCE 0.8
@@ -129,6 +129,7 @@ typedef struct s_threads
 	t_point *proje;
 	int start;
 	int end;
+	bool drawing;
 }	t_threads;
 // ERRORS DEF
 
